@@ -14,7 +14,6 @@ def configure(binder: Binder) -> Binder:
 
     return binder
 
-
 if __name__ == '__main__':
     app = connexion.App(__name__, specification_dir='swagger/')
     app.add_api('my_super_app.yaml', resolver=RestyResolver('api'))
@@ -23,4 +22,4 @@ if __name__ == '__main__':
     server = Server(app)
     server.watch('api/*.py')
     server.watch('swagger/*.yaml')
-    server.serve(9090)
+    server.serve(port=9090, host='0.0.0.0')
